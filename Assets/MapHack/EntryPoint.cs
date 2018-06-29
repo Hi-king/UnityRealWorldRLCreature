@@ -22,7 +22,7 @@ namespace MapHack
                 var cameraPos = _map.CurrentWorldPosition();
                 var targetPos = cameraPos + Camera.main.transform.forward * 20 + Camera.main.transform.up * -10;
                 Car.CreateComponent(targetPos, Camera.main);
-            }
+            }            
         }
     }
 }
