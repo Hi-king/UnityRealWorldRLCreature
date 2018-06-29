@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
+using Wrld.Space;
 
 namespace MapHack
 {
     public class EntryPoint: MonoBehaviour
     {
-        private WrldMap _wrldMap;
+        private Map _map;
+        private double m_latitudeDegrees = 37.771092;
+        private double m_longitudeDegrees = -122.468385;
 
         private void Start()
         {
-//            _wrldMap = gameObject.AddComponent<WrldMap>();
+            _map = gameObject.GetComponent<Map>();
+            _map.InitCamera(new LatLongAltitude(m_latitudeDegrees, m_longitudeDegrees, 100));
+            Car.CreateComponent();
         }
     }
 }

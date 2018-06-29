@@ -2,6 +2,7 @@
 using UnityEngine;
 using Wrld;
 using Wrld.Scripts.Utilities;
+using Wrld.Space;
 
 namespace MapHack
 {
@@ -11,12 +12,6 @@ namespace MapHack
         private Camera m_streamingCamera = null;
 
         [Header("Setup")] [SerializeField] private string m_apiKey;
-
-        [Tooltip("In degrees")] [Range(-90.0f, 90.0f)] [SerializeField]
-        private double m_latitudeDegrees = 37.771092;
-
-        [Tooltip("In degrees")] [Range(-180.0f, 180.0f)] [SerializeField]
-        private double m_longitudeDegrees = -122.468385;
 
         [Tooltip("The distance of the camera from the interest point (meters)")]
         [SerializeField]
@@ -69,6 +64,14 @@ namespace MapHack
             SetupApi();
         }
 
+        public void InitCamera(LatLongAltitude targetGeographic)
+        {
+            var currentPos = m_api.CameraApi.WorldToGeographicPoint(Vector3.zero);
+            Debug.Log(string.Format("{0},{1}", currentPos.GetAltitude(), currentPos.GetLatitude()));
+            var targetPosition = m_api.CameraApi.GeographicToWorldPoint(targetGeographic);
+            m_streamingCamera.transform.position = targetPosition;
+        }
+
         void OnEnable()
         {
             if (Api.Instance == null)
@@ -107,8 +110,6 @@ namespace MapHack
         {
             var config = ConfigParams.MakeDefaultConfig();
             config.DistanceToInterest = m_distanceToInterest;
-            config.LatitudeDegrees = m_latitudeDegrees;
-            config.LongitudeDegrees = m_longitudeDegrees;
             config.HeadingDegrees = m_headingDegrees;
             config.StreamingLodBasedOnDistance = m_streamingLodBasedOnDistance;
             config.MaterialsDirectory = m_materialDirectory;
@@ -154,6 +155,7 @@ namespace MapHack
                 m_api.StreamResourcesForCamera(m_streamingCamera);
             }
 
+
             m_api.Update();
         }
 
@@ -163,28 +165,6 @@ namespace MapHack
             {
                 m_api.Destroy();
                 m_api = null;
-            }
-        }
-
-        void OnApplicationPause(bool isPaused)
-        {
-            SetApplicationPaused(isPaused);
-        }
-
-        void OnApplicationFocus(bool hasFocus)
-        {
-            SetApplicationPaused(!hasFocus);
-        }
-
-        void SetApplicationPaused(bool isPaused)
-        {
-            if (isPaused)
-            {
-                m_api.OnApplicationPaused();
-            }
-            else
-            {
-                m_api.OnApplicationResumed();
             }
         }
     }

@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ab55c202bd4d9aa68d3fc8f3084b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_streamingCamera: {fileID: 0}
+  m_streamingCamera: {fileID: 282840813}
   m_apiKey: 07bcecb1754a65dbdba27f951081bc68
   m_latitudeDegrees: 37.771092
   m_longitudeDegrees: -122.468385
@@ -313,22 +313,7 @@ MonoBehaviour:
   m_streamingLodBasedOnDistance: 0
   m_materialDirectory: WrldMaterials/
   m_overrideLandmarkMaterial: {fileID: 0}
-  m_useBuiltInCameraControls: 1
-  m_terrainCollisions: 0
-  m_roadCollisions: 0
-  m_buildingCollisions: 0
-  m_enableLabels: 0
-  m_streamingCamera: {fileID: 0}
-  m_apiKey: 
-  m_latitudeDegrees: 37.771092
-  m_longitudeDegrees: -122.468385
-  m_distanceToInterest: 1781
-  m_headingDegrees: 0
-  m_coordSystem: 0
-  m_streamingLodBasedOnDistance: 0
-  m_materialDirectory: WrldMaterials/
-  m_overrideLandmarkMaterial: {fileID: 0}
-  m_useBuiltInCameraControls: 1
+  m_useBuiltInCameraControls: 0
   m_terrainCollisions: 0
   m_roadCollisions: 0
   m_buildingCollisions: 0
