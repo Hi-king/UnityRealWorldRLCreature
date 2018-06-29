@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -251,3 +251,85 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1446849044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1446849046}
+  - component: {fileID: 1446849045}
+  - component: {fileID: 1446849047}
+  m_Layer: 0
+  m_Name: EntryPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1446849045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1446849044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47e2b390429476fbe1cac979b770d48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1446849046
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1446849044}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10792.513, y: -1.4429474, z: -4291.529}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1446849047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1446849044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ab55c202bd4d9aa68d3fc8f3084b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_streamingCamera: {fileID: 0}
+  m_apiKey: 07bcecb1754a65dbdba27f951081bc68
+  m_latitudeDegrees: 37.771092
+  m_longitudeDegrees: -122.468385
+  m_distanceToInterest: 1781
+  m_headingDegrees: 0
+  m_coordSystem: 0
+  m_streamingLodBasedOnDistance: 0
+  m_materialDirectory: WrldMaterials/
+  m_overrideLandmarkMaterial: {fileID: 0}
+  m_useBuiltInCameraControls: 1
+  m_terrainCollisions: 0
+  m_roadCollisions: 0
+  m_buildingCollisions: 0
+  m_enableLabels: 0
+  m_streamingCamera: {fileID: 0}
+  m_apiKey: 
+  m_latitudeDegrees: 37.771092
+  m_longitudeDegrees: -122.468385
+  m_distanceToInterest: 1781
+  m_headingDegrees: 0
+  m_coordSystem: 0
+  m_streamingLodBasedOnDistance: 0
+  m_materialDirectory: WrldMaterials/
+  m_overrideLandmarkMaterial: {fileID: 0}
+  m_useBuiltInCameraControls: 1
+  m_terrainCollisions: 0
+  m_roadCollisions: 0
+  m_buildingCollisions: 0
+  m_enableLabels: 0
