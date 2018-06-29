@@ -7,7 +7,7 @@ namespace MapHack
     {
         private Map _map;
         private double m_latitudeDegrees = 37.771092;
-        private double m_longitudeDegrees = -122.468385;
+        private double m_longitudeDegrees = -122.47;
 
         private void Start()
         {

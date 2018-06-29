@@ -11,6 +11,22 @@ namespace MapHack
             return carObj.AddComponent<Car>()._CreateComponent(main);
         }
 
+        private void Update()
+        {
+            if(Input.GetKeyDown (KeyCode.Z))
+            {
+                GameObject bullet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                bullet.AddComponent<Bullet>();
+                var rigidbody = bullet.AddComponent<Rigidbody>();
+//                rigidbody.useGravity = false;
+ 
+                Vector3 force;
+                force = gameObject.transform.forward * 10000 + gameObject.transform.up * 1000;
+                rigidbody.AddForce(force);
+                bullet.transform.position = transform.position + transform.forward * 2 + transform.up * 2;
+            }
+        }
+
         private Car _CreateComponent(Camera main)
         {
             main.transform.parent = transform;

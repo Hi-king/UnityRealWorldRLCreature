@@ -305,8 +305,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_streamingCamera: {fileID: 282840813}
   m_apiKey: 07bcecb1754a65dbdba27f951081bc68
-  m_latitudeDegrees: 37.771092
-  m_longitudeDegrees: -122.468385
   m_distanceToInterest: 1781
   m_headingDegrees: 0
   m_coordSystem: 0
@@ -314,7 +312,7 @@ MonoBehaviour:
   m_materialDirectory: WrldMaterials/
   m_overrideLandmarkMaterial: {fileID: 0}
   m_useBuiltInCameraControls: 0
-  m_terrainCollisions: 0
-  m_roadCollisions: 0
-  m_buildingCollisions: 0
+  m_terrainCollisions: 1
+  m_roadCollisions: 1
+  m_buildingCollisions: 1
   m_enableLabels: 0
