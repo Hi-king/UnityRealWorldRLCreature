@@ -66,10 +66,13 @@ namespace MapHack
 
         public void InitCamera(LatLongAltitude targetGeographic)
         {
-            var currentPos = m_api.CameraApi.WorldToGeographicPoint(Vector3.zero);
-            Debug.Log(string.Format("{0},{1}", currentPos.GetAltitude(), currentPos.GetLatitude()));
             var targetPosition = m_api.CameraApi.GeographicToWorldPoint(targetGeographic);
             m_streamingCamera.transform.position = targetPosition;
+        }
+
+        public Vector3 CurrentWorldPosition()
+        {
+            return m_streamingCamera.transform.position;
         }
 
         void OnEnable()
