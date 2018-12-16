@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using MotionGenerator;
+using MotionGenerator.Entity.Soul;
+using RLCreature.BodyGenerator;
+using RLCreature.BodyGenerator.Manipulatables;
+using RLCreature.Sample.Driving;
+using RLCreature.Sample.SimpleHunting;
+using UnityEngine;
 
 namespace MapHack
 {
@@ -7,8 +14,34 @@ namespace MapHack
         public static Car CreateComponent(Vector3 vector3, Camera main)
         {
             var prefab = (GameObject) Resources.Load("Prefabs/Car");
-            var carObj = Instantiate(prefab, vector3, Quaternion.identity);
-            return carObj.AddComponent<Car>()._CreateComponent(main);
+            var car = Instantiate(prefab, vector3, Quaternion.identity);
+
+            CarControlManipulatable.CreateComponent(car);
+            SurroundSensor.CreateComponent(car);
+            Sensor.CreateComponent(car, typeof(Food), State.BasicKeys.RelativeFoodPosition, range: 300f);
+            Mouth.CreateComponent(car, typeof(Food));
+
+            var actions = LocomotionAction.EightDirections();
+            var sequenceMaker = new EvolutionarySequenceMaker(epsilon: 0.3f, minimumCandidates: 30);
+            var brain = new Brain(
+                new ReinforcementDecisionMaker(keyOrder: new []
+                {
+                    State.BasicKeys.Forward, 
+                    State.BasicKeys.RelativeFoodPosition,
+                    SurroundSensor.Key
+                }, soulWeights: new []
+                {
+                    1f, 1f
+                }),
+                sequenceMaker
+            );
+            Agent.CreateComponent(car, brain, new Body(car), actions, souls: new List<ISoul>()
+            {
+                new SnufflingDifferencialSoul(),
+                new AvoidCrashSoul()
+            });
+
+            return car.AddComponent<Car>()._CreateComponent(main);
         }
 
         private void Update()

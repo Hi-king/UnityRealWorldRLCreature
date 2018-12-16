@@ -1,0 +1,3 @@
+[submodule "Assets/RLCreature"]
+	path = Assets/RLCreature
+	url = https://github.com/dwango/RLCreature.git
