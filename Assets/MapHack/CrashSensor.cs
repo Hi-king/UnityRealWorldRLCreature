@@ -1,3 +1,4 @@
+using MathNet.Numerics.LinearAlgebra.Double;
 using MotionGenerator;
 using RLCreature.BodyGenerator.Manipulatables;
 using UnityEngine;
@@ -10,16 +11,18 @@ namespace MapHack
         private bool _crashed;
         public const string Key = "crashed";
 
-        public CrashSensor CreateComponent(GameObject obj)
+        public static CrashSensor CreateComponent(GameObject obj)
         {
             return obj.AddComponent<CrashSensor>()._CreateComponent();
         }
 
         private CrashSensor _CreateComponent()
         {
+            _state[Key] = new DenseVector(1);
             _crashed = false;
             return this;
         }
+
 
         public override State GetState()
         {

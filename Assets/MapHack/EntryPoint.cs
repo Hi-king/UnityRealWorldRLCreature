@@ -1,4 +1,6 @@
-﻿using RLCreature.Sample.SimpleHunting;
+﻿using RLCreature.Sample.Common.UI;
+using RLCreature.Sample.Common.UI.Actions;
+using RLCreature.Sample.SimpleHunting;
 using UnityEngine;
 using Wrld.Space;
 
@@ -7,13 +9,22 @@ namespace MapHack
     public class EntryPoint : MonoBehaviour
     {
         private Map _map;
-        private double m_latitudeDegrees = 37.771092;
-        private double m_longitudeDegrees = -122.47;
+        public double m_latitudeDegrees = 37.775;
+        public double m_longitudeDegrees = -122.5;
+        private CastUIPresenter GameUI;
 
         private void Start()
         {
+
             _map = gameObject.GetComponent<Map>();
             _map.InitCamera(new LatLongAltitude(m_latitudeDegrees, m_longitudeDegrees, 100));
+//            var cameraPos = _map.CurrentWorldPosition();
+//
+//            GameUI = CastUIPresenter.CreateComponent(Camera.main, gameObject);
+//            CastCameraController.CreateComponent(Camera.main, GameUI.SelectedCreature,
+//                GameUI.FallbackedEventsObservable);
+//            GameUI.LeftToolBar.Add(new SystemActions());
+//            Camera.main.transform.position = cameraPos;
         }
 
 
@@ -59,6 +70,14 @@ namespace MapHack
             if (Input.GetKeyUp(KeyCode.F))
             {
                 Feed();
+            }
+
+            if (Input.GetKeyUp(KeyCode.D))
+            {
+                var cameraPos = _map.CurrentWorldPosition();
+                var targetPos = cameraPos + Camera.main.transform.forward * 20 + Camera.main.transform.up * -10;
+                var agent = CrasherCreature.CreateComponent(targetPos, Camera.main);
+//                var info = GameUI.AddAgent(agent);
             }
 
             if (Input.GetKeyUp(KeyCode.C))

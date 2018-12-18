@@ -21,6 +21,7 @@ namespace MapHack
         {
             _relativePosition = relativePosition;
             testObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            testObject.transform.localScale = new Vector3(1, 10, 1);
             foreach (var collider in testObject.GetComponentsInChildren<Collider>())
             {
                 Destroy(collider);
@@ -39,10 +40,12 @@ namespace MapHack
                 Debug.DrawRay(targetpos + Vector3.up * 100, Vector3.down * hit.distance, Color.yellow);
                 if (!hit.transform.gameObject.name.Contains("_terrain_"))
                 {
-                    UnityEngine.Debug.Log(hit.transform.gameObject.name);
+//                    UnityEngine.Debug.Log(hit.transform.gameObject.name);
+                    testObject.GetComponent<Renderer>().material.color = Color.red;
                     return 1;                    
                 }
             }
+            testObject.GetComponent<Renderer>().material.color = Color.black;
 
             return 0;
         }
@@ -63,9 +66,9 @@ namespace MapHack
         private SurroundSensor _CreateComponent()
         {
             _pointSensors = new List<PointSensor>();
-            foreach (var x in new int[] {-3, 0, 3})
+            foreach (var x in new int[] {-5, 0, 5})
             {
-                foreach (var z in new int[] {-3, 0, 3})
+                foreach (var z in new int[] {-5, 0, 5})
                 {
                     if (x == 0 && z == 0) continue;
                     _pointSensors.Add(PointSensor.CreateComponent(gameObject, new Vector3(x, 0, z)));

@@ -9,7 +9,7 @@ namespace MapHack
         {
             if (nowState.ContainsKey(CrashSensor.Key) && nowState.GetAsDouble(CrashSensor.Key) > 0.9)
             {
-                return -1000;
+                return -10;
             }
 
             return 0;
