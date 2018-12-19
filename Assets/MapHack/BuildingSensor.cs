@@ -41,6 +41,7 @@ namespace MapHack
                 if(candidate == null) continue;
                 
                 if(candidate.GetComponent<CrashedBuilding>() != null) continue; // already crashed
+                if(!candidate.gameObject.activeSelf) continue;
                 
                 var distance = Vector3.Distance(transform.position, candidate.transform.position);
                 if(distance > _range) continue;

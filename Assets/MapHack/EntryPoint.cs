@@ -9,12 +9,17 @@ namespace MapHack
     public class EntryPoint : MonoBehaviour
     {
         private Map _map;
+
+        // 37.329
+        // -121.9
         public double m_latitudeDegrees = 37.775;
         public double m_longitudeDegrees = -122.5;
         private CastUIPresenter GameUI;
+        private GameObject _terrainRoot;
 
         private void Start()
         {
+            _terrainRoot = GameObject.Find("Terrain");
 
             _map = gameObject.GetComponent<Map>();
             _map.InitCamera(new LatLongAltitude(m_latitudeDegrees, m_longitudeDegrees, 100));
@@ -27,6 +32,17 @@ namespace MapHack
 //            Camera.main.transform.position = cameraPos;
         }
 
+
+        private void UpdateTerrain()
+        {
+            foreach (Transform terrainchild in _terrainRoot.transform)
+            {
+                foreach (Transform terrainchild2 in terrainchild)
+                {
+                    terrainchild2.GetComponent<MeshCollider>().material = (Resources.Load<PhysicMaterial>("Ground"));
+                }
+            }
+        }
 
         private void Feed()
         {
@@ -67,6 +83,7 @@ namespace MapHack
 
         private void Update()
         {
+            UpdateTerrain();
             if (Input.GetKeyUp(KeyCode.F))
             {
                 Feed();
@@ -75,7 +92,7 @@ namespace MapHack
             if (Input.GetKeyUp(KeyCode.D))
             {
                 var cameraPos = _map.CurrentWorldPosition();
-                var targetPos = cameraPos + Camera.main.transform.forward * 20 + Camera.main.transform.up * -10;
+                var targetPos = cameraPos + Camera.main.transform.forward * 20 + Camera.main.transform.up * 100;
                 var agent = CrasherCreature.CreateComponent(targetPos, Camera.main);
 //                var info = GameUI.AddAgent(agent);
             }
